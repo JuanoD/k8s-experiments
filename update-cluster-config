@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+IN=data/rke2.yaml
+CA_Data="$(yq '.clusters[] | select(.name == "default") | .cluster."certificate-authority-data"' $IN)"
+USER_Data="$(yq '.users[] | select(.name == "default") | .user' $IN)"
+
+yq -iY "
+  (.clusters[] | select(.name == \"k\") | .cluster.\"certificate-authority-data\" ) = $CA_Data |
+  (.users[] | select(.name == \"k\") | .user ) = $USER_Data
+" ~/.kube/config
