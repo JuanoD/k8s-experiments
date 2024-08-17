@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com
-  config.vm.box = "ubuntu/jammy64"
+  config.vm.box = "bento/ubuntu-24.04"
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder "data", "/vagrant_data"
@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 1024 * 4
     vb.cpus = 2
+#    vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
   end
   
   (1..2).each do |i|
