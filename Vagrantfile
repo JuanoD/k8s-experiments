@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-24.04"
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "setup", "/vagrant_setup"
   config.vm.synced_folder "data", "/vagrant_data"
 
   # https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration
@@ -25,7 +26,7 @@ Vagrant.configure("2") do |config|
         ip: "192.168.1.#{36+i}"
 
       node.vm.provision "shell",
-        path: "setup",
+        path: "setup/script",
         args: ["192.168.1.#{36+i}"]
     end
   end
