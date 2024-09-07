@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: harbor-system
+  labels:
+    name: harbor-system
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: harbor
+  namespace: harbor-system
+spec:
+  repo: https://helm.goharbor.io
+  chart: harbor
+  targetNamespace: harbor-system
+  createNamespace: true
+  version: 1.15.0
+  set: {}
+
+  valuesContent: |-
+    expose:
+      ingress:
+        hosts:
+          core: harbor.k-1.local
+      tls:
+        enabled: true
+        certSource: secret
+        secret:
+          secretName: test-tls
+    externalURL: https://harbor.k-1.local

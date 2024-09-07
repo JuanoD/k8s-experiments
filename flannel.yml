@@ -1,3 +1,4 @@
+# kubectl rollout restart ds rke2-canal -n kube-system
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
