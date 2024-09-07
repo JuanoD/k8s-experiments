@@ -25,6 +25,8 @@ spec:
     persistence:
       defaultClassReplicaCount: 1
     ingress:
+      annotations:
+          cert-manager.io/cluster-issuer: my-ca-issuer
       enabled: true
       host: longhorn.k-1.local
       tls: true

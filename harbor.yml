@@ -23,6 +23,8 @@ spec:
       ingress:
         hosts:
           core: harbor.k-1.local
+        annotations:
+          cert-manager.io/cluster-issuer: my-ca-issuer
       tls:
         enabled: true
         certSource: secret
