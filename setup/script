@@ -1,32 +1,15 @@
 #!/usr/bin/env bash
 
-# Add Docker's official GPG key:
-# apt-get update
-# apt-get install ca-certificates curl
-# install -m 0755 -d /etc/apt/keyrings
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-# chmod a+r /etc/apt/keyrings/docker.asc
-# 
-# # Add the repository to Apt sources:
-# echo \
-#   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-#   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-#   tee /etc/apt/sources.list.d/docker.list > /dev/null
-# apt-get update
-# 
-# apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-# 
-# groupadd docker
-# usermod -aG docker vagrant
-
+apt update
+DNS=(avahi-daemon)
+LONGHORN=(jq nfs-common)
+apt -y install $DNS $LONGHORN yq
 # === Hostname dns ===
-apt-get -y install avahi-daemon
 systemctl enable --now avahi-daemon
 
 # === Needed by longhorn ===
-apt-get -y install jq nfs-common
 systemctl enable --now iscsid
-cat >> /etc/multipath.conf <<EOF
+cat >>/etc/multipath.conf <<EOF
 blacklist {
   devnode "^sd[a-z0-9]+"
 }
@@ -35,41 +18,31 @@ systemctl restart multipathd.service
 
 # === RKE2 Base Config ===
 mkdir -p /etc/rancher/rke2
-cat <<EOF > /etc/rancher/rke2/config.yaml
-write-kubeconfig-mode: "0644"
-tls-san:
-  - k-1.local
-  - 192.168.1.37
-debug: true
-node-ip: $1
+yq -y ".\"node-ip\" = \"$1\"" /vagrant_setup/config.yaml >/etc/rancher/rke2/config.yaml
 
-# kubelet-arg:
-#  - feature-gates=MountPropagation=true,PersistentLocalVolumes=true,VolumeScheduling=true
-# kube-controller-manager-arg:
-#  - feature-gates=MountPropagation=true,PersistentLocalVolumes=true,VolumeScheduling=true
-# kube-apiserver-arg:
-#  - feature-gates=MountPropagation=true,PersistentLocalVolumes=true,VolumeScheduling=true
-EOF
+# === Registry ===
+echo "192.168.1.37 harbor.k-1.local" >>/etc/hosts
+yq -y "." /vagrant_setup/registries.yaml >>/etc/rancher/rke2/registries.yaml
 
 # sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
-export INSTALL_RKE2_VERSION=v1.30.3+rke2r1
+export INSTALL_RKE2_VERSION=v1.31.0+rke2r1
 if [[ "$(hostname)" == "k-1" ]]; then
   # ============== SERVER ==============
-  cat >> /etc/rancher/rke2/config.yaml <<EOF
+  cat >>/etc/rancher/rke2/config.yaml <<EOF
 EOF
 
   curl -sfL https://get.rke2.io | sh -
   systemctl enable --now rke2-server.service
 
-  cat /etc/rancher/rke2/rke2.yaml > /vagrant_data/rke2.yaml
-  cat /var/lib/rancher/rke2/server/node-token > /vagrant_data/node-token
+  cat /etc/rancher/rke2/rke2.yaml >/vagrant_data/rke2.yaml
+  cat /var/lib/rancher/rke2/server/node-token >/vagrant_data/node-token
 
   mkdir /home/vagrant/.kube
-  cat /etc/rancher/rke2/rke2.yaml > /home/vagrant/.kube/config
+  cat /etc/rancher/rke2/rke2.yaml >/home/vagrant/.kube/config
 else
   # ============== AGENT ==============
-  cat <<EOF >> /etc/rancher/rke2/config.yaml
+  cat <<EOF >>/etc/rancher/rke2/config.yaml
 server: https://192.168.1.37:9345
 token: $(cat /vagrant_data/node-token)
 # node-label:

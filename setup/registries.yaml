@@ -1,0 +1,15 @@
+---
+#mirrors:
+#  docker.io:
+#    endpoint:
+#      - https://harbor-registry.harbor-system
+#  harbor-registry.harbor-system:
+#    endpoint:
+#      - harbor-registry.harbor-system:5000
+configs:
+  harbor.k-1.local:
+#     auth:
+#       username: admin
+#       password: pass12345
+    tls:
+      insecure_skip_verify: true

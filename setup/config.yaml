@@ -1,0 +1,13 @@
+write-kubeconfig-mode: "0644"
+tls-san:
+  - k-1.local
+  - 192.168.1.37
+debug: true
+node-ip: ~
+
+# kubelet-arg:
+#  - feature-gates=MountPropagation=true,PersistentLocalVolumes=true,VolumeScheduling=true
+# kube-controller-manager-arg:
+#  - feature-gates=MountPropagation=true,PersistentLocalVolumes=true,VolumeScheduling=true
+# kube-apiserver-arg:
+#  - feature-gates=MountPropagation=true,PersistentLocalVolumes=true,VolumeScheduling=true
