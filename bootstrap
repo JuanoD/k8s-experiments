@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+vagrant destroy -f
+vagrant up
+
+yq -iY '( .clusters[] | select(.name == "default") | .cluster.server ) = "https://192.168.1.37:6443"' data/rke2.yaml
+export KUBECONFIG="$(pwd)/data/rke2.yaml"
+kubectl apply -f flannel.yml
+kubectl rollout restart ds rke2-canal -n kube-system
+kubectl apply -f cert-manager.yml -f longhorn.yml -f harbor.yml
+RESULT=$?
+while [[ $RESULT -ne 0 ]]; do
+    echo "Waiting to re-apply cert-manager..."
+    sleep 5
+    kubectl apply -f cert-manager.yml
+    RESULT=$?
+done
