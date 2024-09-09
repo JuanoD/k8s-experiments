@@ -18,11 +18,11 @@ systemctl restart multipathd.service
 
 # === RKE2 Base Config ===
 mkdir -p /etc/rancher/rke2
-yq -y ".\"node-ip\" = \"$1\"" /vagrant_setup/config.yaml >/etc/rancher/rke2/config.yaml
+yq -Y ".\"node-ip\" = \"$1\"" /vagrant_setup/config.yaml >/etc/rancher/rke2/config.yaml
 
 # === Registry ===
 echo "192.168.1.37 harbor.k-1.local" >>/etc/hosts
-yq -y "." /vagrant_setup/registries.yaml >>/etc/rancher/rke2/registries.yaml
+yq -Y "." /vagrant_setup/registries.yaml >>/etc/rancher/rke2/registries.yaml
 
 # sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 

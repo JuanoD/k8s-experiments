@@ -2,6 +2,7 @@ write-kubeconfig-mode: "0644"
 tls-san:
   - k-1.local
   - 192.168.1.37
+  - 192-168-1-37.sslip.io
 debug: true
 node-ip: ~
 

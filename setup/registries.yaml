@@ -13,3 +13,6 @@ configs:
 #       password: pass12345
     tls:
       insecure_skip_verify: true
+  harbor.192-168-1-37.sslip.io:
+    tls:
+      insecure_skip_verify: true

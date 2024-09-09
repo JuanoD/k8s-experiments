@@ -28,7 +28,8 @@ spec:
       annotations:
           cert-manager.io/cluster-issuer: my-ca-issuer
       enabled: true
-      host: longhorn.k-1.local
+      # host: longhorn.k-1.local
+      host: longhorn.192-168-1-37.sslip.io
       tls: true
       tlsSecret: test-tls
       secureBackends: true

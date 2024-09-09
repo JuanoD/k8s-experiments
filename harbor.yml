@@ -22,7 +22,8 @@ spec:
     expose:
       ingress:
         hosts:
-          core: harbor.k-1.local
+          # core: harbor.k-1.local
+          core: harbor.192-168-1-37.sslip.io
         annotations:
           cert-manager.io/cluster-issuer: my-ca-issuer
       tls:
