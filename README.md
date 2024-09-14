@@ -8,6 +8,6 @@ Create `/etc/docker/daemon.json` if it does not exist
 
 ```json
 {
-  "insecure-registries": ["harbor.k-1.local"]
+  "insecure-registries": ["harbor.k-1.local", "harbor.192-168-1-37.sslip.io"]
 }
 ```

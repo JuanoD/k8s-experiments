@@ -31,4 +31,5 @@ spec:
         certSource: secret
         secret:
           secretName: test-tls
-    externalURL: https://harbor.k-1.local
+    # externalURL: https://harbor.k-1.local
+    externalURL: https://harbor.192-168-1-37.sslip.io
