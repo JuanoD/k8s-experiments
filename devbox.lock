@@ -1,0 +1,137 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "kubectl@latest": {
+      "last_modified": "2024-09-20T05:11:28Z",
+      "resolved": "github:NixOS/nixpkgs/79454ee9aacc9714653a4e7eb2a52b717728caff#kubectl",
+      "source": "devbox-search",
+      "version": "1.31.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/a3sbf306xajs0af6pcz34pw4pi9mkmj5-kubectl-1.31.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/ap867akfi9x10mzsbna51rxfh5wx5av2-kubectl-1.31.0-man",
+              "default": true
+            },
+            {
+              "name": "convert",
+              "path": "/nix/store/n3g8pl6v8qf08d6z6pjllrb89ysr1zsc-kubectl-1.31.0-convert"
+            }
+          ],
+          "store_path": "/nix/store/a3sbf306xajs0af6pcz34pw4pi9mkmj5-kubectl-1.31.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qg9r3qqnjjxqmaq9qqbyh9x12k1vvqhv-kubectl-1.31.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/j132aazwv8nylcr4ciddmyhfwy48al5w-kubectl-1.31.0-man",
+              "default": true
+            },
+            {
+              "name": "convert",
+              "path": "/nix/store/rc505l8rn9sd9g75hkxv1vq8zhr37j4x-kubectl-1.31.0-convert"
+            }
+          ],
+          "store_path": "/nix/store/qg9r3qqnjjxqmaq9qqbyh9x12k1vvqhv-kubectl-1.31.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c5q71r4zbx9jjrdg1bky82q3ak87dsmn-kubectl-1.31.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/fqnpf91mg1w1z7glgx42wxgw8k2j4ym0-kubectl-1.31.0-man",
+              "default": true
+            },
+            {
+              "name": "convert",
+              "path": "/nix/store/arnjlmd1zxdnp76qgk343ybqkjs3d4fb-kubectl-1.31.0-convert"
+            }
+          ],
+          "store_path": "/nix/store/c5q71r4zbx9jjrdg1bky82q3ak87dsmn-kubectl-1.31.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2xi1vzmqlbsqg9k3n1m204n56als7lyn-kubectl-1.31.0",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/75y8hkbk46qksfhqbkv5ass7xx3x1xsh-kubectl-1.31.0-man",
+              "default": true
+            },
+            {
+              "name": "convert",
+              "path": "/nix/store/h9v1hlig44y827ms1cszwld3agdbh47k-kubectl-1.31.0-convert"
+            }
+          ],
+          "store_path": "/nix/store/2xi1vzmqlbsqg9k3n1m204n56als7lyn-kubectl-1.31.0"
+        }
+      }
+    },
+    "vagrant@latest": {
+      "last_modified": "2024-09-28T02:58:32Z",
+      "resolved": "github:NixOS/nixpkgs/4471f9f67fe0f95f5fec4cc2ebac59fe32af2b62#vagrant",
+      "source": "devbox-search",
+      "version": "2.4.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/81n11wqzpkda4vgbhw1gyw8f4yzf48hp-vagrant-2.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/81n11wqzpkda4vgbhw1gyw8f4yzf48hp-vagrant-2.4.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xkjxzlf2as2mklp5ljjgwlhksda16hhq-vagrant-2.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xkjxzlf2as2mklp5ljjgwlhksda16hhq-vagrant-2.4.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dpmmfb52cgf73ba2cngwb4z7hqmgzkdh-vagrant-2.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dpmmfb52cgf73ba2cngwb4z7hqmgzkdh-vagrant-2.4.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1vnx2wjm533hcz6hsng09v7g00jan98p-vagrant-2.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/1vnx2wjm533hcz6hsng09v7g00jan98p-vagrant-2.4.1"
+        }
+      }
+    }
+  }
+}
