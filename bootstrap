@@ -4,10 +4,14 @@ vagrant destroy -f
 vagrant up
 
 yq -iY '( .clusters[] | select(.name == "default") | .cluster.server ) = "https://192.168.1.37:6443"' data/rke2.yaml
+
 export KUBECONFIG="$(pwd)/data/rke2.yaml"
+
 kubectl apply -f flannel.yml
 kubectl rollout restart ds rke2-canal -n kube-system
-kubectl apply -f charts-ns.yml -f argocd.yml
+
+kubectl apply -f charts-ns.yml -f argo/manifests/argocd.yml
+
 RESULT=1
 # Wait for https://github.com/kubernetes/kubernetes/pull/125868
 # kubectl wait --for=condition=ready pod -l app.kubernetes.io/instance=cert-manager

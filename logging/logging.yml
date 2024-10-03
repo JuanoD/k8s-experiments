@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: base-cluster
+  name: logging
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/JuanoD/k8s-experiments
-    path: ./
+    path: logging/manifests
     targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
