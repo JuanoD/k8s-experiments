@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+machines = Integer(ENV["MACHINES"] || 2)
+
 Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com
   config.vm.box = "bento/ubuntu-24.04"
@@ -16,7 +18,7 @@ Vagrant.configure("2") do |config|
 #    vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
   end
   
-  (1..2).each do |i|
+  (1..machines).each do |i|
     config.vm.define "k-#{i}" do |node|
 
       node.vm.hostname = "k-#{i}"
@@ -28,6 +30,7 @@ Vagrant.configure("2") do |config|
       node.vm.provision "shell",
         path: "setup/script",
         args: ["192.168.1.#{36+i}"]
+
     end
   end
 end
