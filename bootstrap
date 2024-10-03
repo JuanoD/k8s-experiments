@@ -16,8 +16,8 @@ RESULT=1
 # Wait for https://github.com/kubernetes/kubernetes/pull/125868
 # kubectl wait --for=condition=ready pod -l app.kubernetes.io/instance=cert-manager
 while [[ $RESULT -ne 0 ]]; do
-    echo "Waiting to re-apply cert-manager..."
+    echo "Waiting to re-apply base argo apps..."
     sleep 5
-    kubectl apply -f base-cluster.yml 2>/dev/null
+    kubectl apply -f argo/app.yml -f base-cluster/app.yml 2>/dev/null
     RESULT=$?
 done
