@@ -1,0 +1,24 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: argocd
+  namespace: charts-system
+spec:
+  repo: https://argoproj.github.io/argo-helm
+  chart: argo-cd
+  targetNamespace: argocd
+  createNamespace: true
+  version: 7.6.7
+  set: {}
+  valuesContent: |-
+    server:
+      ingress:
+        enabled: true
+        hostname: argocd.192-168-1-37.sslip.io
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: my-ca-issuer
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        tls: true

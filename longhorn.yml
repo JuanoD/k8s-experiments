@@ -1,15 +1,8 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: longhorn-system
-  labels:
-    name: longhorn-system
----
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: longhorn
-  namespace: longhorn-system
+  namespace: charts-system
 spec:
   repo: https://charts.longhorn.io
   chart: longhorn

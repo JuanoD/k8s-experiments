@@ -1,15 +1,8 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: cert-manager
-  labels:
-    name: cert-manager
----
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: cert-manager
-  namespace: cert-manager
+  namespace: charts-system
 spec:
   repo: https://charts.jetstack.io
   chart: cert-manager
