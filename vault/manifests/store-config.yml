@@ -1,0 +1,25 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+spec:
+  provider:
+    vault:
+      server: "http://vault.vault:8200"
+      path: secret
+      version: "v2"
+      auth:
+        # points to a secret that contains a vault token
+        # https://www.vaultproject.io/docs/auth/token
+        tokenSecretRef:
+          namespace: default
+          name: vault-token
+          key: "token"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-token
+data:
+  # Dev credentials. Do not use in prod
+  token: cm9vdA==
