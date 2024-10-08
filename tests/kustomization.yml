@@ -1,0 +1,5 @@
+resources:
+  - github.com/argoproj/argo-events/manifests/cluster-install?ref=v1.9.2
+  - github.com/argoproj/argo-workflows/manifests/cluster-install?ref=v3.5.11
+  - ./ns.yml
+  - ./dagger.yml

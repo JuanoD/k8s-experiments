@@ -1,0 +1,12 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: dagger
+  namespace: charts-system
+spec:
+  chart: oci://registry.dagger.io/dagger-helm
+  targetNamespace: dagger
+  createNamespace: true
+  version: 0.13.3
+  set: {}
+  # valuesContent:
