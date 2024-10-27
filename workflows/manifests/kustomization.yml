@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - ./ns.yml
-  - https://github.com/argoproj/argo-events//manifests/cluster-install?ref=v1.9.2&timeout=120
   - https://github.com/argoproj/argo-workflows//manifests/cluster-install/?ref=v3.5.11&timeout=120
+  - ./events
   - ./account.yml
   - ./dagger.yml

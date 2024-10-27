@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: webhook
+spec:
+  template:
+    serviceAccountName: operate-workflow-sa
+  dependencies:
+    - name: test-dep
+      eventSourceName: webhook
+      eventName: example
+  triggers:
+    - template:
+        name: webhook-workflow-trigger
+        k8s:
+          operation: create
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: webhook-
+              spec:
+                entrypoint: dagger-execution
+                volumes:
+                  - name: dagger-socket
+                    hostPath:
+                      path: /var/run/dagger
+                      type: Directory
+                  - name: dagger-storage
+                    emptyDir: {}
+                arguments:
+                  parameters:
+                    - name: repo
+                    - name: revision
+                    - name: params
+                templates:
+                  - name: dagger-execution
+                    steps:
+                      - - name: dagger-workflow
+                          templateRef:
+                            name: dagger-in-argo
+                            template: dagger-workflow
+          parameters:
+            - src:
+                dependencyName: test-dep
+                dataKey: body.repo
+              dest: spec.arguments.parameters.0.value
+            - src:
+                dependencyName: test-dep
+                dataKey: body.revision
+              dest: spec.arguments.parameters.1.value
+            - src:
+                dependencyName: test-dep
+                dataKey: body.params
+              dest: spec.arguments.parameters.2.value
