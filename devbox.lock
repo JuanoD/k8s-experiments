@@ -1,6 +1,150 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "argo-rollouts@latest": {
+      "last_modified": "2024-09-10T15:01:03Z",
+      "resolved": "github:NixOS/nixpkgs/5ed627539ac84809c78b2dd6d26a5cebeb5ae269#argo-rollouts",
+      "source": "devbox-search",
+      "version": "1.7.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/l5d84jm6bzc7554nw9g6pyns75dafvjn-argo-rollouts-1.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/l5d84jm6bzc7554nw9g6pyns75dafvjn-argo-rollouts-1.7.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/m1dlmmzrl32bjqcix6lsl0k6i1kz3fg6-argo-rollouts-1.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/m1dlmmzrl32bjqcix6lsl0k6i1kz3fg6-argo-rollouts-1.7.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/chd22h4ifydn62z6w81nyfmblv41hk32-argo-rollouts-1.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/chd22h4ifydn62z6w81nyfmblv41hk32-argo-rollouts-1.7.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/60hmsk805rlx5gpi16gmyrfpnikjq4ja-argo-rollouts-1.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/60hmsk805rlx5gpi16gmyrfpnikjq4ja-argo-rollouts-1.7.2"
+        }
+      }
+    },
+    "argo@latest": {
+      "last_modified": "2024-09-25T12:08:18Z",
+      "resolved": "github:NixOS/nixpkgs/4f31540079322e6013930b5b2563fd10f96917f0#argo",
+      "source": "devbox-search",
+      "version": "3.5.11",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ci8kd6xvh8xy9zc9vw037h8jfs1fxcsw-argo-3.5.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ci8kd6xvh8xy9zc9vw037h8jfs1fxcsw-argo-3.5.11"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/h840g858grasa0wa52cglpfv70n456s2-argo-3.5.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/h840g858grasa0wa52cglpfv70n456s2-argo-3.5.11"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/smvscyvvi7wmkpaxqq7slj64mdfa8lzd-argo-3.5.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/smvscyvvi7wmkpaxqq7slj64mdfa8lzd-argo-3.5.11"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qydbd7jb93jjxfz93h7l89byjxj2rlhb-argo-3.5.11",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/qydbd7jb93jjxfz93h7l89byjxj2rlhb-argo-3.5.11"
+        }
+      }
+    },
+    "argocd@latest": {
+      "last_modified": "2024-09-27T09:34:34Z",
+      "resolved": "github:NixOS/nixpkgs/e0f477a570df7375172a08ddb9199c90853c63f0#argocd",
+      "source": "devbox-search",
+      "version": "2.12.4",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lqhqqzffg7j7nclh0sz025za68wn620r-argocd-2.12.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/lqhqqzffg7j7nclh0sz025za68wn620r-argocd-2.12.4"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mdqbvjkkvwps4s9xh0j8biip2h7rr5yv-argocd-2.12.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mdqbvjkkvwps4s9xh0j8biip2h7rr5yv-argocd-2.12.4"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/g1gcyb0wjn20m6bm77f2ahnqg4nhdqpi-argocd-2.12.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/g1gcyb0wjn20m6bm77f2ahnqg4nhdqpi-argocd-2.12.4"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/j1lg4lml6pv9rp9igmf5kwf13prg9bw0-argocd-2.12.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/j1lg4lml6pv9rp9igmf5kwf13prg9bw0-argocd-2.12.4"
+        }
+      }
+    },
     "kubectl@latest": {
       "last_modified": "2024-09-20T05:11:28Z",
       "resolved": "github:NixOS/nixpkgs/79454ee9aacc9714653a4e7eb2a52b717728caff#kubectl",
@@ -86,8 +230,8 @@
       }
     },
     "vagrant@latest": {
-      "last_modified": "2024-09-28T02:58:32Z",
-      "resolved": "github:NixOS/nixpkgs/4471f9f67fe0f95f5fec4cc2ebac59fe32af2b62#vagrant",
+      "last_modified": "2024-10-09T11:07:23Z",
+      "resolved": "github:NixOS/nixpkgs/4fa56ac6d86a213b556d4db9b1cb43a51b3e40ec#vagrant",
       "source": "devbox-search",
       "version": "2.4.1",
       "systems": {
@@ -105,11 +249,11 @@
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/xkjxzlf2as2mklp5ljjgwlhksda16hhq-vagrant-2.4.1",
+              "path": "/nix/store/v91kxcl7m2iwj26g96l9j3n6ii087bpq-vagrant-2.4.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/xkjxzlf2as2mklp5ljjgwlhksda16hhq-vagrant-2.4.1"
+          "store_path": "/nix/store/v91kxcl7m2iwj26g96l9j3n6ii087bpq-vagrant-2.4.1"
         },
         "x86_64-darwin": {
           "outputs": [
@@ -125,11 +269,11 @@
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/1vnx2wjm533hcz6hsng09v7g00jan98p-vagrant-2.4.1",
+              "path": "/nix/store/pfj26d78j5vvl5pnry5xd66qr25rih5b-vagrant-2.4.1",
               "default": true
             }
           ],
-          "store_path": "/nix/store/1vnx2wjm533hcz6hsng09v7g00jan98p-vagrant-2.4.1"
+          "store_path": "/nix/store/pfj26d78j5vvl5pnry5xd66qr25rih5b-vagrant-2.4.1"
         }
       }
     }
