@@ -3,14 +3,14 @@
 vagrant destroy -f
 vagrant up
 
-yq -iY '( .clusters[] | select(.name == "default") | .cluster.server ) = "https://192.168.1.37:6443"' data/rke2.yaml
+yq -iY '( .clusters[] | select(.name == "default") | .cluster.server ) = "https://192.168.1.37:6443"' setup/data/rke2.yaml
 
-export KUBECONFIG="$(pwd)/data/rke2.yaml"
+export KUBECONFIG="$(pwd)/setup/data/rke2.yaml"
 
 kubectl apply -f flannel.yml
 kubectl rollout restart ds rke2-canal -n kube-system
 
-kubectl apply -f charts-ns.yml -f argo/manifests/argocd.yml
+kubectl apply -f charts-ns.yml -f manifests/argocd/argocd.yml
 
 RESULT=1
 # Wait for https://github.com/kubernetes/kubernetes/pull/125868
@@ -18,6 +18,7 @@ RESULT=1
 while [[ $RESULT -ne 0 ]]; do
     echo "Waiting to re-apply base argo apps..."
     sleep 5
-    kubectl apply -f argo/app.yml -f base-cluster/app.yml 2>/dev/null
+    kubectl apply -f apps/base.yml 2>/dev/null
     RESULT=$?
 done
+echo "Ready"

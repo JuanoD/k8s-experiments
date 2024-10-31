@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
+  name: longhorn
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/JuanoD/k8s-experiments
-    path: monitoring/manifests
+    path: manifests/longhorn
     targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"

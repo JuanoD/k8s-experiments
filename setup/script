@@ -26,7 +26,7 @@ yq -Y "." /vagrant_setup/registries.yaml >>/etc/rancher/rke2/registries.yaml
 
 # sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
-export INSTALL_RKE2_VERSION=v1.31.0+rke2r1
+export INSTALL_RKE2_VERSION=v1.31.2+rke2r1
 if [[ "$(hostname)" == "k-1" ]]; then
   # ============== SERVER ==============
   cat >>/etc/rancher/rke2/config.yaml <<EOF
@@ -35,8 +35,8 @@ EOF
   curl -sfL https://get.rke2.io | sh -
   systemctl enable --now rke2-server.service
 
-  cat /etc/rancher/rke2/rke2.yaml >/vagrant_data/rke2.yaml
-  cat /var/lib/rancher/rke2/server/node-token >/vagrant_data/node-token
+  cat /etc/rancher/rke2/rke2.yaml >/vagrant_setup/data/rke2.yaml
+  cat /var/lib/rancher/rke2/server/node-token >/vagrant_setup/data/node-token
 
   mkdir /home/vagrant/.kube
   cat /etc/rancher/rke2/rke2.yaml >/home/vagrant/.kube/config
@@ -44,7 +44,7 @@ else
   # ============== AGENT ==============
   cat <<EOF >>/etc/rancher/rke2/config.yaml
 server: https://192.168.1.37:9345
-token: $(cat /vagrant_data/node-token)
+token: $(cat /vagrant_setup/data/node-token)
 # node-label:
 # - longhorn=true
 EOF
@@ -55,3 +55,8 @@ fi
 
 # Add to path
 ln -s /var/lib/rancher/rke2/bin/kubectl /usr/bin/kubectl
+
+# https://serverfault.com/questions/1137211/failed-to-create-fsnotify-watcher-too-many-open-files
+sysctl -w fs.inotify.max_user_watches=2099999999
+sysctl -w fs.inotify.max_user_instances=2099999999
+sysctl -w fs.inotify.max_queued_events=2099999999

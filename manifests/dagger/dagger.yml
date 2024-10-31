@@ -7,6 +7,6 @@ spec:
   chart: oci://registry.dagger.io/dagger-helm
   targetNamespace: dagger
   createNamespace: true
-  version: 0.13.3
+  version: 0.13.6
   set: {}
   # valuesContent:

@@ -9,7 +9,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder "setup", "/vagrant_setup"
-  config.vm.synced_folder "data", "/vagrant_data"
 
   # https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration
   config.vm.provider "virtualbox" do |vb|

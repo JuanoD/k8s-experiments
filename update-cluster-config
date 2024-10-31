@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IN=data/rke2.yaml
+IN=setup/data/rke2.yaml
 CA_Data="$(yq '.clusters[] | select(.name == "default") | .cluster."certificate-authority-data"' $IN)"
 USER_Data="$(yq '.users[] | select(.name == "default") | .user' $IN)"
 

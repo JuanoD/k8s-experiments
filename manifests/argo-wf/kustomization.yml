@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - ./ns.yml
   - https://github.com/argoproj/argo-workflows//manifests/cluster-install/?ref=v3.5.11&timeout=120
-  - ./events
   - ./account.yml
-  - ./dagger.yml
+
+namespace: argo

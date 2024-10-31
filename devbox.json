@@ -8,7 +8,7 @@
     "argocd@latest"
   ],
   "env": {
-    "KUBECONFIG": "$PWD/data/rke2.yaml"
+    "KUBECONFIG": "$PWD/setup/data/rke2.yaml"
   },
   "shell": {
     "init_hook": [
