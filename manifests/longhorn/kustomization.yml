@@ -1,0 +1,41 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./ns.yml
+
+helmCharts:
+  - releaseName: longhorn
+    repo: https://charts.longhorn.io
+    name: longhorn
+    namespace: longhorn-system
+    version: 1.7.2
+    kubeVersion: v1.31
+    valuesInline:
+      defaultSettings:
+        replicaSoftAntiAffinity: true
+        defaultReplicaCount: 1
+      persistence:
+        defaultClassReplicaCount: 1
+      ingress:
+        annotations:
+          cert-manager.io/cluster-issuer: my-ca-issuer
+        enabled: true
+        # host: longhorn.k-1.local
+        host: longhorn.192-168-1-37.sslip.io
+        tls: true
+        tlsSecret: test-tls
+        secureBackends: true
+patches:
+  - path: ./ns-wave.yml
+    target:
+      kind: Namespace
+  - path: sa-wave.yml
+    target:
+      kind: ServiceAccount
+  - path: sa-wave.yml
+    target:
+      kind: ClusterRole
+  - path: sa-wave.yml
+    target:
+      kind: ClusterRoleBinding

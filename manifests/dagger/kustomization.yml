@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./ns.yml
+
+helmCharts:
+  - releaseName: dagger
+    repo: oci://registry.dagger.io
+    name: dagger-helm
+    namespace: dagger
+    version: 0.13.7
+    valuesInline: {}

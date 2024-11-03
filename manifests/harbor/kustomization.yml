@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./ns.yml
+
+helmCharts:
+  - releaseName: harbor
+    repo: https://helm.goharbor.io
+    name: harbor
+    namespace: harbor-system
+    version: 1.15.1
+    valuesInline:
+      expose:
+        ingress:
+          hosts:
+            # core: harbor.k-1.local
+            core: harbor.192-168-1-37.sslip.io
+          annotations:
+            cert-manager.io/cluster-issuer: my-ca-issuer
+        tls:
+          enabled: true
+          certSource: secret
+          secret:
+            secretName: test-tls
+      # externalURL: https://harbor.k-1.local
+      externalURL: https://harbor.192-168-1-37.sslip.io
+
+namespace: harbor-system

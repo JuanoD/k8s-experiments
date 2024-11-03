@@ -9,6 +9,5 @@ resources:
   - ./rbac-sensor.yml
   - ./eventsource-webhook.yml
   - ./sensor-webhook.yml
-  - ./dagger-template.yml
 
 namespace: argo-events

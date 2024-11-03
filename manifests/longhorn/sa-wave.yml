@@ -1,0 +1,6 @@
+kind: ServiceAccount
+metadata:
+  name: noop
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    helm.sh/hook: pre-install

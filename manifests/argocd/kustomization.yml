@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./ns.yml
+
+helmCharts:
+  - releaseName: argo-cd
+    namespace: argocd
+    repo: https://argoproj.github.io/argo-helm
+    name: argo-cd
+    version: 7.6.7
+    kubeVersion: v1.31
+    includeCRDs: true
+    valuesInline:
+      server:
+        ingress:
+          enabled: true
+          hostname: argocd.192-168-1-37.sslip.io
+          ingressClassName: nginx
+          annotations:
+            cert-manager.io/cluster-issuer: my-ca-issuer
+            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+            nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          tls: true
+      configs:
+        cm:
+          kustomize.buildOptions: --enable-helm

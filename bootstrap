@@ -10,7 +10,7 @@ export KUBECONFIG="$(pwd)/setup/data/rke2.yaml"
 kubectl apply -f flannel.yml
 kubectl rollout restart ds rke2-canal -n kube-system
 
-kubectl apply -f charts-ns.yml -f manifests/argocd/argocd.yml
+kubectl kustomize manifests/argocd --enable-helm | kubectl apply --wait -f charts-ns.yml -f -
 
 RESULT=1
 # Wait for https://github.com/kubernetes/kubernetes/pull/125868
@@ -18,7 +18,7 @@ RESULT=1
 while [[ $RESULT -ne 0 ]]; do
     echo "Waiting to re-apply base argo apps..."
     sleep 5
-    kubectl apply -f apps/base.yml 2>/dev/null
+    kubectl kustomize manifests/argocd --enable-helm | kubectl apply --wait -f charts-ns.yml -f apps/base.yml -f - 2>/dev/null
     RESULT=$?
 done
 echo "Ready"
