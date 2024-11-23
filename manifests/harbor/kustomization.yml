@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ./ns.yml
+  - http-route.yml
 
 helmCharts:
   - releaseName: harbor

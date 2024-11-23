@@ -9,5 +9,5 @@ helmCharts:
     repo: oci://registry.dagger.io
     name: dagger-helm
     namespace: dagger
-    version: 0.13.7
+    version: 0.14.0
     valuesInline: {}

@@ -1,3 +1,4 @@
+# https://docs.rke2.io/reference/server_config
 write-kubeconfig-mode: "0644"
 tls-san:
   - k-1.local
@@ -6,6 +7,14 @@ tls-san:
 debug: true
 node-ip: ~
 
+# =======[cilium]=======
+cni: cilium
+# cni: none # Install cilium manually
+disable-kube-proxy: true
+disable:
+  - rke2-ingress-nginx
+# etcd-expose-metrics: false
+# ======================
 # kubelet-arg:
 #  - feature-gates=MountPropagation=true,PersistentLocalVolumes=true,VolumeScheduling=true
 # kube-controller-manager-arg:

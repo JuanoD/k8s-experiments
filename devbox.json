@@ -6,7 +6,9 @@
     "argo@latest",
     "argo-rollouts@latest",
     "argocd@latest",
-    "uv@latest"
+    "uv@latest",
+    "cilium-cli@latest",
+    "k9s@latest"
   ],
   "env": {
     "KUBECONFIG": "$PWD/setup/data/rke2.yaml"

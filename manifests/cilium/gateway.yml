@@ -1,0 +1,38 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: main
+  namespace: kube-system
+  annotations:
+    cert-manager.io/cluster-issuer: my-ca-issuer
+spec:
+  gatewayClassName: cilium
+  listeners:
+    - &http
+      name: http-base
+      hostname: 192-168-1-37.sslip.io
+      port: 80
+      protocol: HTTP
+    - name: http-wild
+      hostname: "*.192-168-1-37.sslip.io"
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - &https
+      name: https-base
+      hostname: 192-168-1-37.sslip.io
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: test-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - <<: *https
+      name: https-wild
+      hostname: "*.192-168-1-37.sslip.io"

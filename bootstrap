@@ -5,10 +5,16 @@ vagrant up
 
 yq -iY '( .clusters[] | select(.name == "default") | .cluster.server ) = "https://192.168.1.37:6443"' setup/data/rke2.yaml
 
+if [[ -n "$CLUSTER_ONLY" ]]; then
+    exit 0
+fi
+
 export KUBECONFIG="$(pwd)/setup/data/rke2.yaml"
 
-kubectl apply -f flannel.yml
-kubectl rollout restart ds rke2-canal -n kube-system
+# kubectl apply -f flannel.yml
+# kubectl rollout restart ds rke2-canal -n kube-system
+kubectl apply -k cilium
+kubectl rollout -n kube-system restart daemonset/cilium deployment/cilium-operator
 
 kubectl kustomize manifests/argocd --enable-helm | kubectl apply --wait -f charts-ns.yml -f -
 

@@ -145,6 +145,102 @@
         }
       }
     },
+    "cilium-cli@latest": {
+      "last_modified": "2024-11-16T04:25:12Z",
+      "resolved": "github:NixOS/nixpkgs/34a626458d686f1b58139620a8b2793e9e123bba#cilium-cli",
+      "source": "devbox-search",
+      "version": "0.16.19",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pq4ha9hxksc7dc807gcw03hrwwmxqk7r-cilium-cli-0.16.19",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pq4ha9hxksc7dc807gcw03hrwwmxqk7r-cilium-cli-0.16.19"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/f8h05hvkrfq6n4yzs9i73whi6vybxaj0-cilium-cli-0.16.19",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/f8h05hvkrfq6n4yzs9i73whi6vybxaj0-cilium-cli-0.16.19"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lil256is68g8v77921d84fxsrv5vxbaj-cilium-cli-0.16.19",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/lil256is68g8v77921d84fxsrv5vxbaj-cilium-cli-0.16.19"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vc21r5yz0ivnm3nvm61r4fbk0ik5i91y-cilium-cli-0.16.19",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vc21r5yz0ivnm3nvm61r4fbk0ik5i91y-cilium-cli-0.16.19"
+        }
+      }
+    },
+    "k9s@latest": {
+      "last_modified": "2024-11-16T04:25:12Z",
+      "resolved": "github:NixOS/nixpkgs/34a626458d686f1b58139620a8b2793e9e123bba#k9s",
+      "source": "devbox-search",
+      "version": "0.32.5",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/l6jkbgc4spqlpn7d4naxsrhgmk4gspvs-k9s-0.32.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/l6jkbgc4spqlpn7d4naxsrhgmk4gspvs-k9s-0.32.5"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hwjs39abc19jf30n3jfw4gjihbxqargx-k9s-0.32.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/hwjs39abc19jf30n3jfw4gjihbxqargx-k9s-0.32.5"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dx0q0sva86kfl2z7k8k4i88jpn2p3bq2-k9s-0.32.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dx0q0sva86kfl2z7k8k4i88jpn2p3bq2-k9s-0.32.5"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dcm12f47cmaqkhr8xca0nfab84sqadn6-k9s-0.32.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dcm12f47cmaqkhr8xca0nfab84sqadn6-k9s-0.32.5"
+        }
+      }
+    },
     "kubectl@latest": {
       "last_modified": "2024-09-20T05:11:28Z",
       "resolved": "github:NixOS/nixpkgs/79454ee9aacc9714653a4e7eb2a52b717728caff#kubectl",
