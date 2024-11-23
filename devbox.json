@@ -5,7 +5,8 @@
     "kubectl@latest",
     "argo@latest",
     "argo-rollouts@latest",
-    "argocd@latest"
+    "argocd@latest",
+    "uv@latest"
   ],
   "env": {
     "KUBECONFIG": "$PWD/setup/data/rke2.yaml"

@@ -229,6 +229,70 @@
         }
       }
     },
+    "uv@latest": {
+      "last_modified": "2024-11-16T04:25:12Z",
+      "resolved": "github:NixOS/nixpkgs/34a626458d686f1b58139620a8b2793e9e123bba#uv",
+      "source": "devbox-search",
+      "version": "0.4.30",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yvdr8x3lfq0m669l7vznyjg51259vzl4-uv-0.4.30",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/fkyqi24vxxcz8q1q312d0a4nv7ch391m-uv-0.4.30-dist"
+            }
+          ],
+          "store_path": "/nix/store/yvdr8x3lfq0m669l7vznyjg51259vzl4-uv-0.4.30"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/d21lwf3jwshn24krhsfmwxslxwikyw8k-uv-0.4.30",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/8azyzcr9la6w8598m1bn3rx5ql148iqq-uv-0.4.30-dist"
+            }
+          ],
+          "store_path": "/nix/store/d21lwf3jwshn24krhsfmwxslxwikyw8k-uv-0.4.30"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/534fmkacb1qxw4mv0zqjm7hh732ip4fi-uv-0.4.30",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/r5fk3v7s1fm82hsblajmh2j1cp317bz5-uv-0.4.30-dist"
+            }
+          ],
+          "store_path": "/nix/store/534fmkacb1qxw4mv0zqjm7hh732ip4fi-uv-0.4.30"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/plgmjfks0wb6v307dixvvcq5w4vldjzz-uv-0.4.30",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/ys3ydh0p7ir68m81v3yqyh4aqjpyk1rb-uv-0.4.30-dist"
+            }
+          ],
+          "store_path": "/nix/store/plgmjfks0wb6v307dixvvcq5w4vldjzz-uv-0.4.30"
+        }
+      }
+    },
     "vagrant@latest": {
       "last_modified": "2024-10-09T11:07:23Z",
       "resolved": "github:NixOS/nixpkgs/4fa56ac6d86a213b556d4db9b1cb43a51b3e40ec#vagrant",

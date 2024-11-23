@@ -1,0 +1,98 @@
+- name: Requirements
+  hosts: all
+  become: true
+  tasks:
+    - name: Install a list of packages
+      ansible.builtin.apt:
+        update_cache: yes
+        pkg:
+          # DNS
+          - avahi-daemon
+          # Longhorn
+          - jq
+          - nfs-common
+          # Mine
+          - yq
+    - name: Start avahi
+      ansible.builtin.systemd_service:
+        state: started
+        name: avahi-daemon
+    - name: Start iscsid
+      ansible.builtin.systemd_service:
+        state: started
+        name: iscsid
+    - name: Multi-path conf
+      ansible.builtin.copy:
+        dest: /etc/multipath.conf
+        content: |
+          blacklist {
+            devnode "^sd[a-z0-9]+"
+          }
+    - name: Reload multipathd
+      ansible.builtin.systemd_service:
+        state: reloaded
+        name: multipathd
+
+    # ansible-galaxy collection install ansible.posix
+    - name: max_user_watches
+      ansible.posix.sysctl:
+        name: fs.inotify.max_user_watches
+        value: 2099999999
+        state: present
+    - name: max_user_instances
+      ansible.posix.sysctl:
+        name: fs.inotify.max_user_instances
+        value: 2099999999
+        state: present
+    - name: max_queued_events
+      ansible.posix.sysctl:
+        name: fs.inotify.max_queued_events
+        value: 2099999999
+        state: present
+
+- name: Install RKE2
+  hosts: all
+  become: true
+  tasks:
+    - name: Create RKE2 folder
+      ansible.builtin.file:
+        path: /etc/rancher/rke2
+        state: directory
+    - name: Copy registries config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/registries.yaml"
+        dest: /etc/rancher/rke2/registries.yaml
+    - name: Copy RKE2 config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/config.yaml"
+        dest: /etc/rancher/rke2/config.yaml
+    - name: Add node-ip, token, and server
+      ansible.builtin.shell: |
+        yq -Yi '."node-ip" = "{{ node_ip }}" | .token = "{{ token }}"' /etc/rancher/rke2/config.yaml
+        {{ worker_only }}yq -Yi '.server = "https://192.168.1.37:9345"' /etc/rancher/rke2/config.yaml
+# echo "192.168.1.37 harbor.k-1.local" >>/etc/hosts
+    - name: Install RKE2
+      ansible.builtin.shell: curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE={{ rke2_type }} INSTALL_RKE2_VERSION={{ version }} sh -
+    - name: Start RKE2
+      ansible.builtin.systemd_service:
+        state: started
+        name: rke2-{{ rke2_type }}
+
+- name: Symlink kubectl
+  hosts: server
+  become: true
+  tasks:
+    - ansible.builtin.file:
+        src: /var/lib/rancher/rke2/bin/kubectl
+        dest: /usr/bin/kubectl
+        state: link
+
+- name: Copy config
+  hosts: k-1
+  become: true
+  tasks:
+    - name: Copy config
+      ansible.builtin.fetch:
+        src: /etc/rancher/rke2/rke2.yaml
+        dest: "{{ playbook_dir }}/data/rke2.yaml"
+        flat: true
