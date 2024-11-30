@@ -1,4 +1,4 @@
 .vagrant
 setup/data/*
 !setup/data/.gitkeep
-manifests/*/charts
+manifests/**/charts
