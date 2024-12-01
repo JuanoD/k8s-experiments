@@ -28,6 +28,7 @@ Vagrant.configure("2") do |config|
       if machines == i
         node.vm.provision :ansible do |ansible|
           ansible.limit = "all"
+          ansible.compatibility_mode = "2.0"
           ansible.groups = {
             "server" => ["k-1"],
             "server:vars" => {
