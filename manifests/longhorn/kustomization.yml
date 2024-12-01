@@ -20,15 +20,15 @@ helmCharts:
         defaultReplicaCount: 1
       persistence:
         defaultClassReplicaCount: 1
-      ingress:
-        annotations:
-          cert-manager.io/cluster-issuer: my-ca-issuer
-        enabled: true
-        # host: longhorn.k-1.local
-        host: longhorn.192-168-1-37.sslip.io
-        tls: true
-        tlsSecret: test-tls
-        secureBackends: true
+      # ingress:
+      #   annotations:
+      #     cert-manager.io/cluster-issuer: my-ca-issuer
+      #   enabled: true
+      #   # host: longhorn.k-1.local
+      #   host: longhorn.192-168-1-37.sslip.io
+      #   tls: true
+      #   tlsSecret: test-tls
+      #   secureBackends: true
 patches:
   - path: ./ns-wave.yml
     target:
