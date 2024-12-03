@@ -1,24 +1,29 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-machines = Integer(ENV["MACHINES"] || 2)
+workers = Integer(ENV["WORKERS"] || 1)
+servers = Integer(ENV["SERVERS"] || 1)
+machines = workers + servers
 
 Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com
   config.vm.box = "bento/ubuntu-24.04"
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
-
-  # https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = 1024 * 4
-    vb.cpus = 2
-#    vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
-  end
   
   (1..machines).each do |i|
     config.vm.define "k-#{i}" do |node|
-
+      # https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration
+      node.vm.provider "virtualbox" do |vb|
+        if i <= servers
+          vb.memory = 1024 * 5
+          vb.cpus = 4
+        else
+          vb.memory = 1024 * 4
+          vb.cpus = 2
+        end
+        # vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+      end
       node.vm.hostname = "k-#{i}"
 
       node.vm.network "public_network",
@@ -30,13 +35,13 @@ Vagrant.configure("2") do |config|
           ansible.limit = "all"
           ansible.compatibility_mode = "2.0"
           ansible.groups = {
-            "server" => ["k-1"],
+            "server" => ["k-[1:#{servers}]"],
             "server:vars" => {
               "rke2_type" => "server",
               "server_only" => "",
               "worker_only" => "\"# \""
             },
-            "worker" => ["k-[2:#{machines}]"],
+            "worker" => ["k-[#{servers + 1}:#{machines}]"],
             "worker:vars" => {
               "rke2_type" => "agent",
               "server_only" => "\"# \"",
@@ -54,8 +59,9 @@ Vagrant.configure("2") do |config|
           (1..machines).each do |j|
             ansible.host_vars.merge!({
               "k-#{j}" => {
-                "node_ip" => "192.168.1.#{36 + j}"
-              } 
+                "node_ip" => "192.168.1.#{36 + j}",
+                "leader_exclude" => j==1 ? "\"# \"" : ""
+              }
             })
           end
 
